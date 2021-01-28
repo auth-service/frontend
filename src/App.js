@@ -32,7 +32,7 @@ function App() {
           </div>
         </nav>
 
-        <div style={{"padding-top": "60px"}}>
+        <div style={{paddingTop: "60px"}}>
           <Switch>
             {/* <Route exact path="/" component={Login} />
 
