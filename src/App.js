@@ -1,5 +1,8 @@
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import { Route } from "react-router";
+import { BrowserRouter as Router, Link, Switch } from "react-router-dom";
+import SignupComponent from "./components/signup/signup.component";
 
 function App() {
   return (
@@ -20,7 +23,7 @@ function App() {
                 </li> */}
 
                 <li className="nav-item">
-                  <Link className="nav-link" to={"/sign-up"}>
+                  <Link className="nav-link" to={"/signup"}>
                     Sign up
                   </Link>
                 </li>
@@ -29,16 +32,14 @@ function App() {
           </div>
         </nav>
 
-        <div className="outer">
-          <div className="inner">
-            <Switch>
-              {/* <Route exact path="/" component={Login} />
+        <div style={{"padding-top": "60px"}}>
+          <Switch>
+            {/* <Route exact path="/" component={Login} />
 
               <Route path="/sign-in" component={Login} /> */}
 
-              <Route path="/signup" component={SignUp} />
-            </Switch>
-          </div>
+            <Route path="/signup" component={SignupComponent} />
+          </Switch>
         </div>
       </div>
     </Router>

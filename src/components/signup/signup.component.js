@@ -1,20 +1,17 @@
 import React, { Component } from "react";
+import "./signup.css";
 
-export default class SignupComponent extends Component {
+class SignupComponent extends Component {
   render() {
     return (
       <form>
         <h3>Register</h3>
 
-        <div className="form-group">
-          <label>Name</label>
-
+        <div className="form-group col-lg-4">
           <input type="text" className="form-control" placeholder="Name" />
         </div>
 
-        <div className="form-group">
-          <label>Email</label>
-
+        <div className="form-group col-lg-4">
           <input
             type="email"
             className="form-control"
@@ -22,15 +19,11 @@ export default class SignupComponent extends Component {
           />
         </div>
 
-        <div className="form-group">
-          <label>Username</label>
-
+        <div className="form-group col-lg-4">
           <input type="text" className="form-control" placeholder="Username" />
         </div>
 
-        <div className="form-group">
-          <label>Password</label>
-
+        <div className="form-group col-lg-4">
           <input
             type="password"
             className="form-control"
@@ -38,9 +31,19 @@ export default class SignupComponent extends Component {
           />
         </div>
 
-        <button type="submit" className="btn btn-dark btn-lg btn-block">
-          Register
-        </button>
+        <div className="form-group col-lg-4">
+          <input
+            type="password"
+            className="form-control"
+            placeholder="Enter password again"
+          />
+        </div>
+
+        <div className="col-lg-4">
+          <button type="submit" className="btn btn-dark btn-lg btn-block">
+            Register
+          </button>
+        </div>
 
         {/* <p className="forgot-password text-right">
           Already registered <a href="#">log in?</a>
@@ -49,3 +52,5 @@ export default class SignupComponent extends Component {
     );
   }
 }
+
+export default SignupComponent;
