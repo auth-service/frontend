@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./signup.css";
 import authService from "../../services/auth.service";
 import MsgDialog from "../msg-dialog/msg-dialog";
@@ -21,12 +22,18 @@ class SignupComponent extends Component {
   signup = (e) => {
     e.preventDefault();
     if (this.state.pass.length < 6) {
-      this._msgDialog.current.openDialog(enums.errs.ERR, enums.errs.PASS_MIN_LEN);
+      this._msgDialog.current.openDialog(
+        enums.errs.ERR,
+        enums.errs.PASS_MIN_LEN
+      );
       return;
     }
 
     if (this.state.pass !== this.state.confirmPass) {
-      this._msgDialog.current.openDialog(enums.errs.ERR, enums.errs.PASS_NOT_MATCH);
+      this._msgDialog.current.openDialog(
+        enums.errs.ERR,
+        enums.errs.PASS_NOT_MATCH
+      );
       return;
     }
 
@@ -40,34 +47,36 @@ class SignupComponent extends Component {
     authService
       .signup(req)
       .then((response) => {
-        if (response.success) {
-          this._msgDialog.current.openDialog(enums.msgs.TOKEN, response.token);
+        if (response.data.success) {
+          this._msgDialog.current.openDialog(
+            enums.words.TOKEN,
+            response.data.token
+          );
           return;
         }
-        this._msgDialog.current.openDialog(enums.errs.ERR, enums.errs.CALL_NOT_SUCCESS);
+        this._msgDialog.current.openDialog(
+          enums.errs.ERR,
+          enums.errs.CALL_NOT_SUCCESS
+        );
       })
       .catch((error) => {
         if (error.response && error.response.data) {
-          this._msgDialog.current.openDialog(enums.errs.ERR, error.response.data.errMsg);
+          this._msgDialog.current.openDialog(
+            enums.errs.ERR,
+            error.response.data.errMsg
+          );
           return;
         }
         this._msgDialog.current.openDialog(enums.errs.ERR, error.message);
       });
   };
 
-  openDialog(title, content) {
-    this.setState({
-      title: title,
-      content: content,
-    });
-  }
-
   render() {
     return (
       <form>
         <h3>Register</h3>
 
-        <div className="form-group col-lg-4">
+        <div className="form-group col-lg-4" style={{ margin: "15px auto" }}>
           <input
             type="text"
             className="form-control"
@@ -77,7 +86,7 @@ class SignupComponent extends Component {
           />
         </div>
 
-        <div className="form-group col-lg-4">
+        <div className="form-group col-lg-4" style={{ margin: "15px auto" }}>
           <input
             type="email"
             className="form-control"
@@ -87,7 +96,7 @@ class SignupComponent extends Component {
           />
         </div>
 
-        <div className="form-group col-lg-4">
+        <div className="form-group col-lg-4" style={{ margin: "15px auto" }}>
           <input
             type="text"
             className="form-control"
@@ -97,7 +106,7 @@ class SignupComponent extends Component {
           />
         </div>
 
-        <div className="form-group col-lg-4">
+        <div className="form-group col-lg-4" style={{ margin: "15px auto" }}>
           <input
             type="password"
             className="form-control"
@@ -107,7 +116,7 @@ class SignupComponent extends Component {
           />
         </div>
 
-        <div className="form-group col-lg-4">
+        <div className="form-group col-lg-4" style={{ margin: "15px auto" }}>
           <input
             type="password"
             className="form-control"
@@ -117,7 +126,7 @@ class SignupComponent extends Component {
           />
         </div>
 
-        <div className="col-lg-4">
+        <div className="col-lg-4" style={{ margin: "15px auto" }}>
           <button
             type="submit"
             className="btn btn-dark btn-lg btn-block"
@@ -127,9 +136,12 @@ class SignupComponent extends Component {
           </button>
         </div>
 
-        {/* <p className="forgot-password text-right">
-          Already registered <a href="#">log in?</a>
-        </p> */}
+        <p>
+          Already registered?
+          <Link className="nav-link" to={"/login"}>
+            Login
+          </Link>
+        </p>
 
         <MsgDialog ref={this._msgDialog} />
       </form>

@@ -3,7 +3,7 @@ import "./App.css";
 import { Route } from "react-router";
 import { BrowserRouter as Router, Link, Switch } from "react-router-dom";
 import SignupComponent from "./components/signup/signup.component";
-import MsgDialog from "./components/msg-dialog/msg-dialog";
+import LoginComponent from "./components/login/login.component";
 
 function App() {
   return (
@@ -11,17 +11,17 @@ function App() {
       <div className="App">
         <nav className="navbar navbar-expand-lg navbar-light fixed-top">
           <div className="container">
-            {/* <Link className="navbar-brand" to={"/sign-in"}>
-              RemoteStack
-            </Link> */}
+            <Link className="navbar-brand" to={"/login"}>
+              Auth Service
+            </Link>
 
             <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul className="navbar-nav ml-auto">
-                {/* <li className="nav-item">
-                  <Link className="nav-link" to={"/sign-in"}>
-                    Sign in
+                <li className="nav-item">
+                  <Link className="nav-link" to={"/login"}>
+                    Login
                   </Link>
-                </li> */}
+                </li>
 
                 <li className="nav-item">
                   <Link className="nav-link" to={"/signup"}>
@@ -35,9 +35,9 @@ function App() {
 
         <div style={{ paddingTop: "60px" }}>
           <Switch>
-            {/* <Route exact path="/" component={Login} />
+            <Route exact path="/" component={LoginComponent} />
 
-              <Route path="/sign-in" component={Login} /> */}
+            <Route path="/login" component={LoginComponent} />
 
             <Route path="/signup" component={SignupComponent} />
           </Switch>
