@@ -10,9 +10,9 @@ class LoginComponent extends Component {
   }
 
   state = {
-    email: "ashi@email.com",
-    username: "ashi",
-    pass: "password",
+    email: "",
+    username: "",
+    pass: "",
   };
 
   login = (e) => {

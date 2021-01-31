@@ -12,11 +12,11 @@ class SignupComponent extends Component {
   }
 
   state = {
-    email: "ashi@email.com",
-    username: "ashi",
-    pass: "password",
-    name: "ashi",
-    confirmPass: "password",
+    email: "",
+    username: "",
+    pass: "",
+    name: "",
+    confirmPass: "",
   };
 
   signup = (e) => {
