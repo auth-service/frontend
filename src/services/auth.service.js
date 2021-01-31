@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'http://localhost:1026/api/auth',
+    baseURL: 'https://airasia-auth-service-backend.herokuapp.com/api/auth',
     headers: {
         'content-type':'application/json'
     },

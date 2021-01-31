@@ -1,38 +1,35 @@
 import React, { Component } from "react";
 import "./signup.css";
 import authService from "../../services/auth.service";
+import MsgDialog from "../msg-dialog/msg-dialog";
+import enums from "../../enums";
 
 class SignupComponent extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     email: "",
-  //     username: "",
-  //     pass: "",
-  //     name: "",
-  //   };
-  // }
+  constructor() {
+    super();
+    this._msgDialog = React.createRef();
+  }
 
   state = {
-    email: "",
-    username: "",
-    pass: "",
-    name: "",
-    confirmPass: ""
+    email: "ashi@email.com",
+    username: "ashi",
+    pass: "password",
+    name: "ashi",
+    confirmPass: "password",
   };
 
   signup = (e) => {
     e.preventDefault();
     if (this.state.pass.length < 6) {
-      console.error("pass should have minimum len of 6");
+      this._msgDialog.current.openDialog(enums.errs.ERR, enums.errs.PASS_MIN_LEN);
       return;
     }
 
     if (this.state.pass !== this.state.confirmPass) {
-      console.error("pass and confirm pass should match");
+      this._msgDialog.current.openDialog(enums.errs.ERR, enums.errs.PASS_NOT_MATCH);
       return;
     }
-    
+
     const req = {
       email: this.state.email,
       username: this.state.username,
@@ -44,24 +41,28 @@ class SignupComponent extends Component {
       .signup(req)
       .then((response) => {
         if (response.success) {
-          console.warn("token:", response.token);
+          this._msgDialog.current.openDialog(enums.msgs.TOKEN, response.token);
           return;
         }
-
-        console.error("error:", response.errMsg);
+        this._msgDialog.current.openDialog(enums.errs.ERR, enums.errs.CALL_NOT_SUCCESS);
       })
       .catch((error) => {
-        console.error(error);
+        if (error.response && error.response.data) {
+          this._msgDialog.current.openDialog(enums.errs.ERR, error.response.data.errMsg);
+          return;
+        }
+        this._msgDialog.current.openDialog(enums.errs.ERR, error.message);
       });
   };
 
-  render() {
-    // const [name, setName] = useState("");
-    // const [email, setEmail] = useState("");
-    // const [username, setUsername] = useState("");
-    // const [pass, setPass] = useState("");
-    // const [confirmPass, setConfirmPass] = useState("");
+  openDialog(title, content) {
+    this.setState({
+      title: title,
+      content: content,
+    });
+  }
 
+  render() {
     return (
       <form>
         <h3>Register</h3>
@@ -129,6 +130,8 @@ class SignupComponent extends Component {
         {/* <p className="forgot-password text-right">
           Already registered <a href="#">log in?</a>
         </p> */}
+
+        <MsgDialog ref={this._msgDialog} />
       </form>
     );
   }

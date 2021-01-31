@@ -3,6 +3,7 @@ import "./App.css";
 import { Route } from "react-router";
 import { BrowserRouter as Router, Link, Switch } from "react-router-dom";
 import SignupComponent from "./components/signup/signup.component";
+import MsgDialog from "./components/msg-dialog/msg-dialog";
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
           </div>
         </nav>
 
-        <div style={{paddingTop: "60px"}}>
+        <div style={{ paddingTop: "60px" }}>
           <Switch>
             {/* <Route exact path="/" component={Login} />
 
