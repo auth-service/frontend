@@ -73,8 +73,10 @@ class LoginComponent extends Component {
               onInput={(e) => this.setState({ email: e.target.value })}
             />
           </div>
-          
-          <div className="col-1" style={{ margin: "15px auto" }}>or</div>
+
+          <div className="col-1" style={{ margin: "15px auto" }}>
+            or
+          </div>
 
           <div className="form-group col-lg-4" style={{ margin: "15px auto" }}>
             <input
